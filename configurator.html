@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Конфигуратор ПК | PC Builder</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Дополнительные стили только для конфигуратора */
+        .config-panel {
+            background: #0f172a;
+            border-radius: 28px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+        .config-group {
+            margin-bottom: 20px;
+        }
+        .config-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #facc15;
+        }
+        .config-group select {
+            width: 100%;
+            padding: 12px;
+            background: #1e293b;
+            border: 1px solid #475569;
+            border-radius: 40px;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+        .result-box {
+            background: #0f172a;
+            border-radius: 28px;
+            padding: 20px;
+            margin-top: 25px;
+            border-left: 6px solid #3b82f6;
+        }
+        .total-price {
+            font-size: 28px;
+            font-weight: bold;
+            color: #10b981;
+            margin: 15px 0;
+        }
+        .component-list {
+            list-style: none;
+            padding: 0;
+        }
+        .component-list li {
+            margin: 8px 0;
+            padding: 8px;
+            background: #1e293b;
+            border-radius: 20px;
+        }
+        .config-btn {
+            background: #3b82f6;
+            margin-top: 15px;
+            width: 100%;
+        }
+        .config-btn:hover {
+            background: #2563eb;
+        }
+    </style>
+</head>
+<body>
+    <div class="menu">
+        <a href="index.html" class="button">Главная</a>
+        <a href="catalog.html" class="button">Комплектующие</a>
+        <a href="gallery.html" class="button">Готовые сборки</a>
+        <a href="configurator.html" class="button">Конфигуратор</a>
+        <a href="contacts.html" class="button">Контакты</a>
+    </div>
+
+    <div class="container">
+        <h1>🧩 Конфигуратор ПК</h1>
+        <p>Выберите компоненты, и мы рассчитаем примерную стоимость вашей сборки.</p>
+
+        <div class="config-panel">
+            <div class="config-group">
+                <label>🖥️ Процессор</label>
+                <select id="cpuSelect">
+                    <option value="19990">AMD Ryzen 5 7600X — 19 990 ₽</option>
+                    <option value="24500">Intel Core i5-13600K — 24 500 ₽</option>
+                    <option value="54990">AMD Ryzen 7 7800X3D — 54 990 ₽</option>
+                    <option value="38500">Intel Core i7-13700K — 38 500 ₽</option>
+                </select>
+            </div>
+
+            <div class="config-group">
+                <label>🎮 Видеокарта</label>
+                <select id="gpuSelect">
+                    <option value="39900">NVIDIA RTX 4060 Ti 8GB — 39 900 ₽</option>
+                    <option value="54990">AMD Radeon RX 7800 XT — 54 990 ₽</option>
+                    <option value="89900">NVIDIA RTX 4070 Ti 12GB — 89 900 ₽</option>
+                    <option value="129990">NVIDIA RTX 4080 16GB — 129 990 ₽</option>
+                </select>
+            </div>
+
+            <div class="config-group">
+                <label>💾 Оперативная память</label>
+                <select id="ramSelect">
+                    <option value="6200">DDR4 32GB (2x16) 3200MHz — 6 200 ₽</option>
+                    <option value="11200">DDR5 32GB (2x16) 6000MHz — 11 200 ₽</option>
+                    <option value="20500">DDR5 64GB (2x32) 6000MHz — 20 500 ₽</option>
+                </select>
+            </div>
+
+            <div class="config-group">
+                <label>💽 Накопитель (SSD)</label>
+                <select id="ssdSelect">
+                    <option value="5490">SSD 500GB NVMe — 5 490 ₽</option>
+                    <option value="8490">SSD 1TB NVMe Samsung 980 Pro — 8 490 ₽</option>
+                    <option value="15990">SSD 2TB NVMe WD Black — 15 990 ₽</option>
+                </select>
+            </div>
+
+            <button id="buildBtn" class="alert-btn config-btn">🔨 Собрать и рассчитать цену</button>
+        </div>
+
+        <div class="result-box" id="resultBox" style="display: none;">
+            <h3>⚙️ Ваша сборка:</h3>
+            <ul class="component-list" id="componentList"></ul>
+            <div class="total-price" id="totalPrice"></div>
+            <button class="alert-btn" onclick="alert('Вы можете оформить заказ на странице Контакты!')">Заказать эту сборку</button>
+        </div>
+    </div>
+
+    <script>
+        const cpuSelect = document.getElementById('cpuSelect');
+        const gpuSelect = document.getElementById('gpuSelect');
+        const ramSelect = document.getElementById('ramSelect');
+        const ssdSelect = document.getElementById('ssdSelect');
+        const buildBtn = document.getElementById('buildBtn');
+        const resultBox = document.getElementById('resultBox');
+        const componentList = document.getElementById('componentList');
+        const totalPriceSpan = document.getElementById('totalPrice');
+
+        function getComponentName(selectElement, valueAttr = 'value') {
+            const selectedOption = selectElement.options[selectElement.selectedIndex];
+            return selectedOption.text.split(' — ')[0];
+        }
+
+        function getComponentPrice(selectElement) {
+            return parseInt(selectElement.value);
+        }
+
+        buildBtn.addEventListener('click', () => {
+            const cpuName = getComponentName(cpuSelect);
+            const cpuPrice = getComponentPrice(cpuSelect);
+            const gpuName = getComponentName(gpuSelect);
+            const gpuPrice = getComponentPrice(gpuSelect);
+            const ramName = getComponentName(ramSelect);
+            const ramPrice = getComponentPrice(ramSelect);
+            const ssdName = getComponentName(ssdSelect);
+            const ssdPrice = getComponentPrice(ssdSelect);
+
+            const total = cpuPrice + gpuPrice + ramPrice + ssdPrice;
+
+            componentList.innerHTML = `
+                <li>${cpuName} — ${cpuPrice.toLocaleString()} ₽</li>
+                <li>${gpuName} — ${gpuPrice.toLocaleString()} ₽</li>
+                <li>${ramName} — ${ramPrice.toLocaleString()} ₽</li>
+                <li>${ssdName} — ${ssdPrice.toLocaleString()} ₽</li>
+            `;
+            totalPriceSpan.innerHTML = `💰 Итоговая стоимость: ${total.toLocaleString()} ₽`;
+            resultBox.style.display = 'block';
+        });
+    </script>
+</body>
+</html>
