@@ -66,21 +66,23 @@
     </style>
 </head>
 <body>
-    <div class="menu">
+    <div class="header">
+        <img src="https://raw.githubusercontent.com/Ko0tek/pc-/refs/heads/main/E605C9AB-5544-4F15-A773-3E8A56665897.png" alt="PC Builder Logo" class="logo">
+	<div class="menu">
         <a href="index.html" class="button">Главная</a>
         <a href="catalog.html" class="button">Комплектующие</a>
         <a href="gallery.html" class="button">Готовые сборки</a>
         <a href="configurator.html" class="button">Конфигуратор</a>
         <a href="contacts.html" class="button">Контакты</a>
     </div>
-
+</div>
     <div class="container">
-        <h1>🧩 Конфигуратор ПК</h1>
+        <h1>Конфигуратор ПК</h1>
         <p>Выберите компоненты, и мы рассчитаем примерную стоимость вашей сборки.</p>
 
         <div class="config-panel">
             <div class="config-group">
-                <label>🖥️ Процессор</label>
+                <label>Процессор</label>
                 <select id="cpuSelect">
                     <option value="19990">AMD Ryzen 5 7600X — 19 990 ₽</option>
                     <option value="24500">Intel Core i5-13600K — 24 500 ₽</option>
@@ -90,7 +92,7 @@
             </div>
 
             <div class="config-group">
-                <label>🎮 Видеокарта</label>
+                <label>Видеокарта</label>
                 <select id="gpuSelect">
                     <option value="39900">NVIDIA RTX 4060 Ti 8GB — 39 900 ₽</option>
                     <option value="54990">AMD Radeon RX 7800 XT — 54 990 ₽</option>
@@ -100,16 +102,16 @@
             </div>
 
             <div class="config-group">
-                <label>💾 Оперативная память</label>
+                <label>Оперативная память</label>
                 <select id="ramSelect">
-                    <option value="6200">DDR4 32GB (2x16) 3200MHz — 6 200 ₽</option>
-                    <option value="11200">DDR5 32GB (2x16) 6000MHz — 11 200 ₽</option>
-                    <option value="20500">DDR5 64GB (2x32) 6000MHz — 20 500 ₽</option>
+                    <option value="18300">DDR4 32GB (2x16) 3200MHz — 18 300 ₽</option>
+                    <option value="28800">DDR5 32GB (2x16) 6000MHz — 28 800 ₽</option>
+                    <option value="40500">DDR5 64GB (2x32) 6000MHz — 40 500 ₽</option>
                 </select>
             </div>
 
             <div class="config-group">
-                <label>💽 Накопитель (SSD)</label>
+                <label>Накопитель (SSD)</label>
                 <select id="ssdSelect">
                     <option value="5490">SSD 500GB NVMe — 5 490 ₽</option>
                     <option value="8490">SSD 1TB NVMe Samsung 980 Pro — 8 490 ₽</option>
@@ -117,11 +119,11 @@
                 </select>
             </div>
 
-            <button id="buildBtn" class="alert-btn config-btn">🔨 Собрать и рассчитать цену</button>
+            <button id="buildBtn" class="alert-btn config-btn">Собрать и рассчитать цену</button>
         </div>
 
         <div class="result-box" id="resultBox" style="display: none;">
-            <h3>⚙️ Ваша сборка:</h3>
+            <h3>Ваша сборка:</h3>
             <ul class="component-list" id="componentList"></ul>
             <div class="total-price" id="totalPrice"></div>
             <button class="alert-btn" onclick="alert('Вы можете оформить заказ на странице Контакты!')">Заказать эту сборку</button>
@@ -165,7 +167,7 @@
                 <li>${ramName} — ${ramPrice.toLocaleString()} ₽</li>
                 <li>${ssdName} — ${ssdPrice.toLocaleString()} ₽</li>
             `;
-            totalPriceSpan.innerHTML = `💰 Итоговая стоимость: ${total.toLocaleString()} ₽`;
+            totalPriceSpan.innerHTML = `Итоговая стоимость: ${total.toLocaleString()} ₽`;
             resultBox.style.display = 'block';
         });
     </script>
