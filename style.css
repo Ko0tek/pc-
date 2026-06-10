@@ -1,4 +1,4 @@
-/* Тёмная тема — фон не белый */
+/* Тёмная тема */
 body {
     background: #0f1722;
     font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
@@ -7,7 +7,7 @@ body {
     color: #eef2ff;
 }
 
-/* Шапка с логотипом и меню в одной строке */
+/* логотип и меню на одной строкчке */
 .header {
     display: flex;
     align-items: center;
@@ -21,7 +21,7 @@ body {
     backdrop-filter: blur(10px);
 }
 
-/* Логотип */
+/* логотип */
 .logo {
     height: 50px;
     width: auto;
@@ -29,7 +29,7 @@ body {
     object-fit: contain;
 }
 
-/* Меню (кнопки) */
+/* кнорки меню */
 .menu {
     display: flex;
     flex-wrap: wrap;
@@ -65,7 +65,7 @@ body {
     box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.4);
 }
 
-/* Кнопки alert */
+/* кнопки alert */
 .alert-btn {
     background: #10b981;
     color: white;
@@ -114,19 +114,6 @@ img {
     font-size: 1.1rem;
     padding-left: 8px;
 }
-
-/* Видео */
-.video-wrapper {
-    text-align: center;
-    margin: 30px 0;
-}
-
-.video-wrapper iframe {
-    max-width: 100%;
-    border-radius: 28px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-}
-
 /* Таблица */
 .price-table {
     width: 100%;
@@ -153,7 +140,7 @@ img {
     background: #1e2a46;
 }
 
-/* Галерея */
+/* галерея */
 .gallery {
     display: flex;
     flex-wrap: wrap;
@@ -225,7 +212,7 @@ img {
     border-color: #3b82f6;
 }
 
-/* Адаптивность */
+/* ajhvfn gjl ntktajys */
 @media (max-width: 750px) {
     .header {
         flex-direction: column;
